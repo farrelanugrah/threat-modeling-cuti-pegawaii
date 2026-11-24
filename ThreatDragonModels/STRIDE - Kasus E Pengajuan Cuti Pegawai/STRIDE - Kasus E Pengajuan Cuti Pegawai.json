@@ -35,8 +35,8 @@
             },
             "visible": true,
             "shape": "trust-boundary-box",
-            "id": "5b43684e-91bc-4951-a07b-6b723f97551d",
             "zIndex": -1,
+            "id": "5b43684e-91bc-4951-a07b-6b723f97551d",
             "data": {
               "type": "tm.BoundaryBox",
               "name": "TB 1 – User Environment",
@@ -69,8 +69,8 @@
             },
             "visible": true,
             "shape": "trust-boundary-box",
-            "id": "c6d06893-8fd2-4192-81e1-5e547c52a064",
             "zIndex": -1,
+            "id": "c6d06893-8fd2-4192-81e1-5e547c52a064",
             "data": {
               "type": "tm.BoundaryBox",
               "name": "TB 2 – Internal Application",
@@ -103,8 +103,8 @@
             },
             "visible": true,
             "shape": "trust-boundary-box",
-            "id": "370a5a4a-c8be-4327-bd0d-df6082fc5fc9",
             "zIndex": -1,
+            "id": "370a5a4a-c8be-4327-bd0d-df6082fc5fc9",
             "data": {
               "type": "tm.BoundaryBox",
               "name": "TB 3 – External Payroll",
@@ -118,15 +118,6 @@
                 "69359f34-f770-48db-a20b-ddf154181e06",
                 "2694b4e2-e52e-4739-aa31-2bd1098ca51f"
               ]
-            },
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove",
-                "boundary",
-                "button-remove"
-              ],
-              "name": null
             }
           },
           {
@@ -143,13 +134,14 @@
                 "text": "Pegawai"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
             "visible": true,
             "shape": "actor",
+            "zIndex": 1,
             "ports": {
               "groups": {
                 "top": {
@@ -233,7 +225,6 @@
               ]
             },
             "id": "62f3ab3f-db04-4c52-be89-94111a634bdc",
-            "zIndex": 1,
             "data": {
               "type": "tm.Actor",
               "name": "Pegawai",
@@ -241,9 +232,53 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "providesAuthentication": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "b8a067ea-d555-424a-9237-1997ff354355",
+                  "title": "Pemalsuan Identitas Pegawai",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Penyerang menggunakan akun atau kredensial pegawai yang dicuri untuk mengakses sistem dan mengajukan cuti tanpa izin.",
+                  "mitigation": "Menerapkan MFA, password kuat, dan pembatasan percobaan login.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 2,
+                  "score": "8"
+                },
+                {
+                  "id": "3456072a-0f64-43a6-840d-0cc318c7666f",
+                  "title": "Penyangkalan Pengajuan Cuti",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Pegawai menyangkal pernah mengajukan permohonan cuti karena tidak tersedia bukti aktivitas pengajuan yang memadai.",
+                  "mitigation": "Menyimpan audit log pengajuan cuti yang mencatat identitas pengguna, waktu, dan detail aktivitas.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 3,
+                  "score": "5"
+                },
+                {
+                  "id": "a307fac0-f9f7-4880-a291-6f1ca5a330d3",
+                  "title": "Manipulasi Data Pengajuan Cuti",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Pegawai memanipulasi tanggal atau jenis cuti melalui permintaan yang dikirim ke backend.\n",
+                  "mitigation": "Melakukan validasi seluruh input di sisi backend dan menerapkan validasi integritas data.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 4,
+                  "score": "7"
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 2,
+                "repudiation": 1
+              }
             }
           },
           {
@@ -260,13 +295,14 @@
                 "text": "Manajer Divisi"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
             "visible": true,
             "shape": "actor",
+            "zIndex": 2,
             "ports": {
               "groups": {
                 "top": {
@@ -350,7 +386,6 @@
               ]
             },
             "id": "754ca8a8-a57b-4282-99e7-3d90b459f597",
-            "zIndex": 2,
             "data": {
               "type": "tm.Actor",
               "name": "Manajer Divisi",
@@ -358,9 +393,53 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "providesAuthentication": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "c57e6b35-18fc-4d75-84de-424d21acc1f9",
+                  "title": "Pemalsuan Identitas Manajer",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Penyerang menyamar sebagai Manajer Divisi untuk menyetujui atau menolak pengajuan cuti pegawai.",
+                  "mitigation": "Menerapkan MFA dan verifikasi identitas serta hak akses manajer.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 5,
+                  "score": "9"
+                },
+                {
+                  "id": "740548fa-847b-4e12-a297-7ccec8dcca88",
+                  "title": "Penyangkalan Keputusan Persetujuan",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Manajer menyangkal telah menyetujui atau menolak permohonan cuti karena tidak adanya bukti aktivitas persetujuan.",
+                  "mitigation": "Mencatat setiap keputusan persetujuan dan penolakan dalam audit log.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 6,
+                  "score": "6"
+                },
+                {
+                  "id": "6ffdc8e9-da02-4a49-a5c6-ebe539226b57",
+                  "title": "Penyalahgunaan Hak Persetujuan",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Repudiation",
+                  "description": "Pengguna yang tidak memiliki kewenangan manajer mencoba mengakses fitur persetujuan cuti.",
+                  "mitigation": "Menerapkan RBAC dan pemeriksaan otorisasi berdasarkan divisi.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 7,
+                  "score": "8"
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "repudiation": 2
+              }
             }
           },
           {
@@ -377,13 +456,14 @@
                 "text": "Sistem Payroll"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
             "visible": true,
             "shape": "actor",
+            "zIndex": 3,
             "ports": {
               "groups": {
                 "top": {
@@ -467,7 +547,6 @@
               ]
             },
             "id": "69359f34-f770-48db-a20b-ddf154181e06",
-            "zIndex": 3,
             "data": {
               "type": "tm.Actor",
               "name": "Sistem Payroll",
@@ -475,9 +554,73 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "providesAuthentication": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "5cde4d71-7a9a-4818-9aba-8c8753a09f34",
+                  "title": "Pemalsuan Identitas Sistem Payroll",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Penyerang menyamar sebagai Sistem Payroll untuk mengirimkan respons atau data palsu kepada API Integrasi Payroll.",
+                  "mitigation": "Menerapkan autentikasi antarserver, sertifikat digital, dan mutual TLS.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 30,
+                  "score": "8"
+                },
+                {
+                  "id": "84ef0d23-ea67-4391-a355-5375bbf9c501",
+                  "title": "Manipulasi Data Payroll",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Repudiation",
+                  "description": "Data rekapitulasi cuti yang diterima Sistem Payroll dimanipulasi sehingga menghasilkan perhitungan tunjangan kehadiran yang salah.",
+                  "mitigation": "Melakukan validasi data, pemeriksaan integritas menggunakan hash atau digital signature, dan menyimpan audit log.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 31,
+                  "score": "9"
+                },
+                {
+                  "id": "c6345604-05dd-43b9-a321-003b82f1d925",
+                  "title": "Kebocoran Informasi Payroll",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Data rekapitulasi cuti dan informasi pegawai yang diterima Sistem Payroll diakses oleh pihak yang tidak berwenang.",
+                  "mitigation": "Mengenkripsi data, menerapkan kontrol akses, dan membatasi penyimpanan informasi sesuai kebutuhan.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 32,
+                  "score": "9"
+                },
+                {
+                  "id": "0ea62292-3e52-458e-97f6-9cb9a83ff1d6",
+                  "title": "Gangguan Sistem Payroll",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Repudiation",
+                  "description": "Serangan terhadap Sistem Payroll menyebabkan sistem tidak dapat menerima atau memproses data rekapitulasi cuti dari aplikasi kepegawaian.",
+                  "mitigation": "Menerapkan perlindungan terhadap serangan DoS, monitoring server, backup, dan mekanisme pemulihan layanan.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 33,
+                  "score": "8"
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 2,
+                "repudiation": 2
+              }
+            },
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove"
+              ],
+              "name": null
             }
           },
           {
@@ -501,6 +644,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 4,
             "ports": {
               "groups": {
                 "top": {
@@ -584,7 +728,6 @@
               ]
             },
             "id": "411369b1-23ad-45c9-b71a-c3b2f989bfdc",
-            "zIndex": 4,
             "data": {
               "type": "tm.Process",
               "name": "Backend Kepegawaian",
@@ -614,13 +757,14 @@
                 "text": "Layanan Autentikasi"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 5,
             "ports": {
               "groups": {
                 "top": {
@@ -704,7 +848,6 @@
               ]
             },
             "id": "27c6a1b5-ff16-4bd8-8eab-40f869a946b6",
-            "zIndex": 5,
             "data": {
               "type": "tm.Process",
               "name": "Layanan Autentikasi",
@@ -712,12 +855,99 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
               "privilegeLevel": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "b1b97f26-dd18-4463-9141-2654d0c6ecc2",
+                  "title": "Pemalsuan Identitas Pengguna",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Penyerang dapat menyamar sebagai pegawai atau Manajer Divisi dengan menggunakan kredensial hasil pencurian atau akun yang berhasil diambil alih. Hal ini memungkinkan penyerang mengakses sistem dan melakukan pengajuan atau persetujuan cuti tanpa izin.",
+                  "mitigation": "Menerapkan Multi-Factor Authentication (MFA), kebijakan kata sandi yang kuat, pembatasan percobaan login, serta pengelolaan session yang aman. Sistem juga harus melakukan verifikasi identitas pengguna sebelum memberikan akses.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 1,
+                  "score": "8"
+                },
+                {
+                  "id": "56fc2a25-86e7-465a-9083-9205ced28e5e",
+                  "title": "Manipulasi Token Autentikasi",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Penyerang memodifikasi token autentikasi atau session untuk memperoleh akses yang tidak sah.",
+                  "mitigation": "Menggunakan token bertanda tangan digital, validasi signature, dan masa berlaku token.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 19,
+                  "score": "8"
+                },
+                {
+                  "id": "c9f6b422-a7a7-4403-a418-d343d5ca16c1",
+                  "title": "Penyangkalan Aktivitas Login",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Pengguna menyangkal telah melakukan login atau aktivitas autentikasi karena tidak tersedianya pencatatan aktivitas.",
+                  "mitigation": "Mencatat aktivitas login berhasil, gagal, waktu, dan identitas pengguna dalam audit log.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 20,
+                  "score": "6"
+                },
+                {
+                  "id": "f81c886a-b0ae-4aaf-9714-f2a6dfbe8d49",
+                  "title": "Kebocoran Kredensial Pengguna",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Username, password, atau token autentikasi bocor akibat penyimpanan atau komunikasi yang tidak aman.",
+                  "mitigation": "Menggunakan hashing Argon2id atau bcrypt, HTTPS, dan penyimpanan token yang aman.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 21,
+                  "score": "8"
+                },
+                {
+                  "id": "aca4e114-d1b8-4661-8099-f06ed84b00b1",
+                  "title": "Serangan Login Berulang",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Denial of service",
+                  "description": "Penyerang mengirimkan permintaan login secara berulang sehingga layanan autentikasi mengalami kelebihan beban.",
+                  "mitigation": "Menerapkan rate limiting, CAPTCHA, dan monitoring aktivitas login.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 22,
+                  "score": "7"
+                },
+                {
+                  "id": "9be33123-279e-47d6-a8e9-8de1d34662d0",
+                  "title": "Penyalahgunaan Hak Akses Pengguna",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "Pengguna biasa mencoba meningkatkan hak akses menjadi Manajer Divisi atau administrator melalui manipulasi role.",
+                  "mitigation": "Menerapkan RBAC dan validasi hak akses di sisi server.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 23,
+                  "score": "8"
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "tampering": 1,
+                "repudiation": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1,
+                "elevationOfPrivilege": 1
+              }
             }
           },
           {
@@ -734,13 +964,14 @@
                 "text": "API Integrasi Payroll"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 6,
             "ports": {
               "groups": {
                 "top": {
@@ -824,7 +1055,6 @@
               ]
             },
             "id": "2694b4e2-e52e-4739-aa31-2bd1098ca51f",
-            "zIndex": 6,
             "data": {
               "type": "tm.Process",
               "name": "API Integrasi Payroll",
@@ -832,12 +1062,99 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
               "privilegeLevel": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "32877d55-4126-41f2-b74d-d39d1d181373",
+                  "title": "Pemalsuan Permintaan API Payroll",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Penyerang menyamar sebagai Backend Kepegawaian dan mengirimkan data rekapitulasi cuti palsu ke API Payroll.",
+                  "mitigation": "Menggunakan API Key atau OAuth 2.0, autentikasi antarserver, dan validasi identitas pengirim.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 24,
+                  "score": "9"
+                },
+                {
+                  "id": "e6c8b343-34ee-4f8b-bd25-7e3210cb3449",
+                  "title": "Manipulasi Data Rekapitulasi Cuti",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Penyerang mengubah data rekapitulasi cuti sebelum dikirim ke Sistem Payroll sehingga perhitungan tunjangan kehadiran menjadi tidak akurat.",
+                  "mitigation": "Menggunakan HTTPS, digital signature, dan validasi integritas data.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 25,
+                  "score": "9"
+                },
+                {
+                  "id": "1dd505b0-b5d9-4b91-9d1e-df5d98f68b4d",
+                  "title": "Penyangkalan Pengiriman Data Payroll",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Pihak pengirim menyangkal pernah mengirimkan data rekapitulasi cuti karena tidak tersedia bukti transaksi pengiriman.",
+                  "mitigation": "Menyimpan log transaksi API yang mencatat waktu, identitas pengirim, dan status pengiriman.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 26,
+                  "score": "6"
+                },
+                {
+                  "id": "c545fba6-d48e-4ecb-bc01-56ec5aeab19e",
+                  "title": "Kebocoran Data Rekapitulasi Cuti",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Informasi rekapitulasi cuti pegawai dapat diakses pihak yang tidak berwenang selama proses integrasi.",
+                  "mitigation": "Menggunakan HTTPS, enkripsi data, dan pembatasan akses API.\n",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 27,
+                  "score": "8"
+                },
+                {
+                  "id": "739c2e61-57ab-4698-9c2d-e8bc4168413a",
+                  "title": "Gangguan Layanan API Payroll",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Denial of service",
+                  "description": "Penyerang mengirimkan permintaan API dalam jumlah besar sehingga layanan integrasi Payroll tidak dapat memproses data.",
+                  "mitigation": "Menerapkan rate limiting, monitoring API, dan mekanisme pembatasan request.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 28,
+                  "score": "7"
+                },
+                {
+                  "id": "da75a4af-9109-42ee-ae35-4e006b83cd7f",
+                  "title": "Penyalahgunaan Hak Akses API",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "Penyerang mengeksploitasi kelemahan otorisasi API untuk memperoleh hak akses lebih tinggi dan mengakses fungsi integrasi yang tidak diizinkan.",
+                  "mitigation": "Mitigations: Menerapkan OAuth 2.0, RBAC, validasi scope token, dan prinsip least privilege.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 29,
+                  "score": "8"
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "tampering": 1,
+                "repudiation": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1,
+                "elevationOfPrivilege": 1
+              }
             }
           },
           {
@@ -854,16 +1171,19 @@
                 "text": "Database Kepegawaian"
               },
               "topLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               },
               "bottomLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
             "visible": true,
             "shape": "store",
+            "zIndex": 7,
             "ports": {
               "groups": {
                 "top": {
@@ -947,7 +1267,6 @@
               ]
             },
             "id": "bf05f81b-10f5-4206-95d1-caf333b15067",
-            "zIndex": 7,
             "data": {
               "type": "tm.Store",
               "name": "Database Kepegawaian",
@@ -955,13 +1274,98 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isALog": false,
               "isEncrypted": false,
               "isSigned": false,
               "storesCredentials": false,
               "storesInventory": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "e39d6fd4-ec34-48b5-baa6-397cc8b581bb",
+                  "title": "Pemalsuan Permintaan ke Backend",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Penyerang mengirimkan permintaan palsu dengan menyamar sebagai pegawai atau manajer untuk mengakses fungsi backend.",
+                  "mitigation": "Memvalidasi token autentikasi, identitas pengguna, dan hak akses pada setiap permintaan.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 8,
+                  "score": "9"
+                },
+                {
+                  "id": "5cec4802-28c5-461a-8a5e-fd333552fedc",
+                  "title": "Manipulasi Data Permohonan Cuti",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Penyerang mengubah tanggal cuti, saldo cuti, atau status permohonan melalui manipulasi request.",
+                  "mitigation": "Validasi input di server, kontrol integritas data, dan penggunaan transaksi database.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 9,
+                  "score": "9"
+                },
+                {
+                  "id": "b929b527-a20c-4f82-9315-4f311f3ef53e",
+                  "title": "Penyangkalan Aktivitas Pemrosesan Cuti",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Aktivitas pengubahan status dan pemrosesan cuti tidak tercatat sehingga sulit diketahui pihak yang melakukan perubahan.",
+                  "mitigation": "Menerapkan audit log yang mencatat identitas pengguna, waktu, dan aktivitas pemrosesan.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 10,
+                  "score": "6"
+                },
+                {
+                  "id": "49c2efe7-560c-477d-a37c-9e1a76133861",
+                  "title": "Kebocoran Data Pegawai",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Backend mengungkapkan informasi pribadi, saldo cuti, atau dokumen pegawai kepada pengguna yang tidak berwenang.",
+                  "mitigation": "Menerapkan kontrol akses, enkripsi data, dan pembatasan informasi berdasarkan peran pengguna.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 11,
+                  "score": "8"
+                },
+                {
+                  "id": "e94e357a-794f-42c5-a730-bebad4dd0531",
+                  "title": "Gangguan Layanan Backend",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Denial of service",
+                  "description": "Penyerang mengirimkan permintaan dalam jumlah besar sehingga backend mengalami kelebihan beban dan layanan pengajuan cuti tidak dapat digunakan.",
+                  "mitigation": "Menerapkan rate limiting, monitoring server, dan pembatasan request.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 12,
+                  "score": "8"
+                },
+                {
+                  "id": "edab6169-69e3-49ce-9db7-73852dbd3375",
+                  "title": "Peningkatan Hak Akses Tidak Sah",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Repudiation",
+                  "description": "Pengguna biasa mengeksploitasi kelemahan otorisasi backend untuk mendapatkan hak akses administrator atau manajer.",
+                  "mitigation": "Menerapkan RBAC, prinsip least privilege, dan validasi otorisasi pada setiap endpoint.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 13,
+                  "score": "9"
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 2,
+                "repudiation": 2,
+                "informationDisclosure": 1,
+                "denialOfService": 1
+              }
             }
           },
           {
@@ -978,16 +1382,19 @@
                 "text": "Penyimpanan Lampiran Medis"
               },
               "topLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               },
               "bottomLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
             "visible": true,
             "shape": "store",
+            "zIndex": 8,
             "ports": {
               "groups": {
                 "top": {
@@ -1071,7 +1478,6 @@
               ]
             },
             "id": "e36d8702-0057-493a-8221-001c30f5714d",
-            "zIndex": 8,
             "data": {
               "type": "tm.Store",
               "name": "Penyimpanan Lampiran Medis",
@@ -1079,13 +1485,85 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isALog": false,
               "isEncrypted": false,
               "isSigned": false,
               "storesCredentials": false,
               "storesInventory": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "a2c9dff1-ac5c-4dd9-b65a-a376ed387c3c",
+                  "title": "Pemalsuan Identitas Pengakses Dokumen",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Penyerang menyamar sebagai pengguna yang memiliki izin untuk mengakses dokumen medis pegawai.",
+                  "mitigation": "Memvalidasi identitas pengguna dan menerapkan autentikasi sebelum memberikan akses dokumen.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 14,
+                  "score": "8"
+                },
+                {
+                  "id": "aaac454a-677b-47d0-8abc-ab383f5b6928",
+                  "title": "Manipulasi Lampiran Medis",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Penyerang mengganti atau memodifikasi surat keterangan dokter yang disimpan sehingga dokumen tidak lagi sesuai dengan dokumen asli.",
+                  "mitigation": "Menggunakan checksum atau hash untuk memeriksa integritas file serta membatasi hak unggah dan pengubahan dokumen.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 15,
+                  "score": "9"
+                },
+                {
+                  "id": "88b75ae4-48a9-477d-a96a-26a7c8724d22",
+                  "title": "Kebocoran Dokumen Medis",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Information disclosure",
+                  "description": "Dokumen medis pegawai dapat diakses atau diunduh oleh pihak yang tidak berwenang sehingga informasi pribadi pegawai terekspos.",
+                  "mitigation": "Mengenkripsi dokumen, membatasi akses berdasarkan peran, dan menggunakan penyimpanan file yang tidak dapat diakses secara publik.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 16,
+                  "score": "10"
+                },
+                {
+                  "id": "83356eb1-72da-4ea2-8a99-e2c025ec8750",
+                  "title": "Penghapusan Lampiran Medis",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Penyerang menghapus lampiran medis sehingga bukti pendukung pengajuan cuti sakit hilang.",
+                  "mitigation": "Menerapkan backup otomatis, kontrol akses, dan pencatatan aktivitas penghapusan.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 17,
+                  "score": "7"
+                },
+                {
+                  "id": "f299c8d1-935b-484b-bffe-1f31d374af79",
+                  "title": "Pengambilalihan Hak Akses Penyimpanan",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Repudiation",
+                  "description": "Pengguna biasa memperoleh hak untuk melihat, mengubah, atau menghapus seluruh dokumen medis pegawai.",
+                  "mitigation": "Menerapkan RBAC dan pembatasan hak akses berdasarkan kebutuhan pekerjaan.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 18,
+                  "score": "8"
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 3,
+                "repudiation": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 0
+              }
             }
           },
           {
@@ -1767,6 +2245,6 @@
     ],
     "diagramTop": 2,
     "reviewer": "",
-    "threatTop": 0
+    "threatTop": 33
   }
 }
