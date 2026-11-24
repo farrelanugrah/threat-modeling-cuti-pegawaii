@@ -1,0 +1,29 @@
+{
+  "version": "2.6.2",
+  "release_version": "1.0",
+  "released_at": "2026-11-24",
+  "summary": {
+    "title": "STRIDE - Kasus E Pengajuan Cuti Pegawai",
+    "owner": "Farrel Anugrah Ramadhan",
+    "description": "Threat Modeling Sistem Pengajuan dan Persetujuan Cuti Pegawai menggunakan metode STRIDE.",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "DFD Sistem Pengajuan Cuti Pegawai",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.6.2",
+        "cells": [],
+        "description": "Diagram aliran data sistem pengajuan dan persetujuan cuti pegawai yang melibatkan pegawai, manajer divisi, backend kepegawaian, layanan autentikasi, database kepegawaian, penyimpanan lampiran medis, dan sistem Payroll eksternal."
+      }
+    ],
+    "diagramTop": 1,
+    "reviewer": "",
+    "threatTop": 0
+  }
+}
