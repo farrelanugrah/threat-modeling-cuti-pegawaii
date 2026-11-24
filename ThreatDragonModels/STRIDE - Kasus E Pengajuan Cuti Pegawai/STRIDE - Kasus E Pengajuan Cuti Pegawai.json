@@ -22,7 +22,7 @@
         "description": "Diagram aliran data sistem pengajuan dan persetujuan cuti pegawai yang melibatkan pegawai, manajer divisi, backend kepegawaian, layanan autentikasi, database kepegawaian, penyimpanan lampiran medis, dan sistem Payroll eksternal."
       }
     ],
-    "diagramTop": 1,
+    "diagramTop": 2,
     "reviewer": "",
     "threatTop": 0
   }
